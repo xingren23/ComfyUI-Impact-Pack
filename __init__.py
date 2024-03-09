@@ -43,31 +43,36 @@ if impact.config.get_config()['dependency_version'] < impact.config.dependency_v
 
 sys.path.append(subpack_path)
 
-# Core
-# recheck dependencies for colab
-try:
-    import impact.subpack_nodes  # This import must be done before cv2.
+def recheck_dependencies_for_colab():
+    # Core
+    # recheck dependencies for colab
+    try:
+        import impact.subpack_nodes  # This import must be done before cv2.
 
-    import folder_paths
-    import torch
-    import cv2
-    import numpy as np
-    import comfy.samplers
-    import comfy.sd
-    import warnings
-    from PIL import Image, ImageFilter
-    from skimage.measure import label, regionprops
-    from collections import namedtuple
-    import piexif
+        import folder_paths
+        import torch
+        import cv2
+        import numpy as np
+        import comfy.samplers
+        import comfy.sd
+        import warnings
+        from PIL import Image, ImageFilter
+        from skimage.measure import label, regionprops
+        from collections import namedtuple
+        import piexif
 
-    if not impact.config.get_config()['mmdet_skip']:
-        import mmcv
-        from mmdet.apis import (inference_detector, init_detector)
-        from mmdet.evaluation import get_classes
-except:
-    import importlib
-    print("### ComfyUI-Impact-Pack: Reinstall dependencies (several dependencies are missing.)")
-    do_install()
+        if not impact.config.get_config()['mmdet_skip']:
+            import mmcv
+            from mmdet.apis import (inference_detector, init_detector)
+            from mmdet.evaluation import get_classes
+    except:
+        import importlib
+        print("### ComfyUI-Impact-Pack: Reinstall dependencies (several dependencies are missing.)")
+        do_install()
+
+
+# TOOD: check only f or colab env
+# recheck_dependencies_for_colab()       
 
 import impact.impact_server  # to load server api
 

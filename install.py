@@ -226,23 +226,19 @@ def install():
     impact.config.write_config()
 
 
-if __name__ == "__main__":
-    try:
-        import platform
-        import folder_paths
-        from torchvision.datasets.utils import download_url
-        import impact.config
-
-        print("### ComfyUI-Impact-Pack: Check dependencies")
-
-        if "python_embeded" in sys.executable or "python_embedded" in sys.executable:
-            pip_install = [sys.executable, '-s', '-m', 'pip', 'install']
-            mim_install = [sys.executable, '-s', '-m', 'mim', 'install']
-        else:
-            pip_install = [sys.executable, '-m', 'pip', 'install']
-            mim_install = [sys.executable, '-m', 'mim', 'install']
-        install()
-
-    except Exception as e:
-        print("[ERROR] ComfyUI-Impact-Pack: Dependency installation has failed. Please install manually.")
-        traceback.print_exc()
+try:
+    import platform
+    import folder_paths
+    from torchvision.datasets.utils import download_url
+    import impact.config
+    print("### ComfyUI-Impact-Pack: Check dependencies")
+    if "python_embeded" in sys.executable or "python_embedded" in sys.executable:
+        pip_install = [sys.executable, '-s', '-m', 'pip', 'install']
+        mim_install = [sys.executable, '-s', '-m', 'mim', 'install']
+    else:
+        pip_install = [sys.executable, '-m', 'pip', 'install']
+        mim_install = [sys.executable, '-m', 'mim', 'install']
+    install()
+except Exception as e:
+    print("[ERROR] ComfyUI-Impact-Pack: Dependency installation has failed. Please install manually.")
+    traceback.print_exc()
