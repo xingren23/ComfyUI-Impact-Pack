@@ -33,9 +33,9 @@ def do_install():
 
 
 # ensure dependency
-if not os.path.exists(os.path.join(subpack_path, ".git")) and os.path.exists(subpack_path):
-    print(f"### CompfyUI-Impact-Pack: corrupted subpack detected.")
-    shutil.rmtree(subpack_path)
+# if not os.path.exists(os.path.join(subpack_path, ".git")) and os.path.exists(subpack_path):
+#     print(f"### CompfyUI-Impact-Pack: corrupted subpack detected.")
+#     shutil.rmtree(subpack_path)
 
 if impact.config.get_config()['dependency_version'] < impact.config.dependency_version or not os.path.exists(subpack_path):
     print(f"### ComfyUI-Impact-Pack: Updating dependencies [{impact.config.get_config()['dependency_version']} -> {impact.config.dependency_version}]")
